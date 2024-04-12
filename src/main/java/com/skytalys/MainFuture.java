@@ -1,5 +1,8 @@
 package com.skytalys;
 
+import com.skytalys.model.Product;
+import com.skytalys.service.WorkerCallable;
+
 import java.util.concurrent.*;
 
 public class MainFuture    {
@@ -10,8 +13,8 @@ public class MainFuture    {
         ExecutorService es = Executors.newSingleThreadExecutor();
 //getting future
 //the method submit() submits a value-returning task for execution and returns the Future
-        Future<String> future = es.submit(
-                            new WorkerCallable(10)
+        Future<Product> future = es.submit(
+                new WorkerCallable(10)
         );
 //checks if the task is completed or not
         while(!future.isDone())
@@ -22,7 +25,7 @@ public class MainFuture    {
         }
         System.out.println("Task completed! getting the result");
 //getting the result after completing the task
-        String result = future.get();
+        Product result = future.get();
 //prints the result
         System.out.println(result);
         es.shutdown();
