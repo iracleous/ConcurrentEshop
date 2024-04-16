@@ -21,6 +21,6 @@ private int id;
         }
 
 
-        return new Product(1,"chips", 10) ;
+        return new Product() ;
     }
 }
