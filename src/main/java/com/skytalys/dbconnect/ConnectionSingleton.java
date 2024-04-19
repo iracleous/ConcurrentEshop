@@ -2,6 +2,7 @@ package com.skytalys.dbconnect;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class ConnectionSingleton {
@@ -20,8 +21,11 @@ public class ConnectionSingleton {
   }
 
    private static Connection createConnection(  ){
-         try (Connection conn = DriverManager.getConnection(
-               connectionString, dbUser, dbPassword )) {
+
+       Connection conn = null;
+         try  {
+              conn = DriverManager.getConnection(
+                     connectionString, dbUser, dbPassword );
            if (conn != null) {
                System.out.println("Connected to the database!");
                return conn;
@@ -34,4 +38,12 @@ public class ConnectionSingleton {
            return null;
        }
    }
+
+   public static int executeQuery( Connection conn, String sql ) throws SQLException {
+       PreparedStatement preparedStatement = conn.prepareStatement(sql);
+       int rowsInserted = preparedStatement.executeUpdate();
+       return rowsInserted;
+   }
+
+
  }
