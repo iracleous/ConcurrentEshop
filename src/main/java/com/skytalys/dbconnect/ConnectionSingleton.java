@@ -10,35 +10,28 @@ public class ConnectionSingleton {
   private static final String dbUser = "dimitris";
   private static final String dbPassword = "@pass0rd@@@";
 
-  private static ConnectionSingleton connection;
+  private static Connection  connection;
 
-  public static ConnectionSingleton getConnectionSingleton( ){
+  public static Connection  getConnection ( ){
      if(connection == null){
-         connection  = new ConnectionSingleton(0);
+         connection  =   createConnection();
      }
       return connection;
   }
 
-   private ConnectionSingleton(int id ){
-       if (id>10)
-           throw new RuntimeException();
-
-       try (Connection conn = DriverManager.getConnection(
+   private static Connection createConnection(  ){
+         try (Connection conn = DriverManager.getConnection(
                connectionString, dbUser, dbPassword )) {
-
            if (conn != null) {
                System.out.println("Connected to the database!");
+               return conn;
            } else {
                System.out.println("Failed to make connection!");
+               return null;
            }
-
-       } catch (SQLException e) {
-           System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
        } catch (Exception e) {
            e.printStackTrace();
+           return null;
        }
-
    }
-
-
-    }
+ }
