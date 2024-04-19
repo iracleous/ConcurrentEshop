@@ -66,7 +66,8 @@ Product[] product1 = null;
             e.printStackTrace();
         }
 
-        Arrays.stream(product1).forEach(System.out::println);
+        Arrays.stream(product1)
+                .forEach(System.out::println);
 
 
     }
