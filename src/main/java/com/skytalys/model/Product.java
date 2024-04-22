@@ -11,7 +11,7 @@ import lombok.experimental.SuperBuilder;
 public class Product {
     private int id;
     private String name="";
-    private double price;
+    private Double price;
     private String description="";
     private int quantity;
   //  @ToString.Exclude

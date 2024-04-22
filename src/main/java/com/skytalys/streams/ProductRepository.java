@@ -57,7 +57,7 @@ public class ProductRepository {
     //Sorting
     //Filtering
     //Mapping
-    //Reducing
+    //Reducing    min, max, average, sum, count, stdev, concatenation
     //Matching
     //Counting
     //Grouping
@@ -74,4 +74,36 @@ public class ProductRepository {
                 .filter(product -> product.getName().startsWith(starting))
                 .collect(Collectors.toList());
     }
+
+public  List<String> getProductDescriptions() {
+    return products.stream()
+            .map( product -> product.getDescription())
+            .collect(Collectors.toList());
+    }
+
+  public double getAveragePrice()  {
+//      return products.stream()
+//              .map(product -> product.getPrice())
+//              .reduce(0.0, Double::sum)/ products.size();
+//
+
+      return products.stream()
+              .mapToDouble(Product::getPrice)
+              .average()
+              .orElse(0);
+  }
+
+public long countProductsAbovePriceLevel(double priceLevel) {
+    return products.stream()
+            .filter(product -> product.getPrice() >priceLevel)
+            .count();
+ }
+
+    public boolean existsProductWithName(String name) {
+        return products.stream()
+                .anyMatch(p -> p.getName().equals(name));
+    }
+
 }
+
+
