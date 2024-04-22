@@ -3,11 +3,14 @@ package com.skytalys.streams;
 import com.github.javafaker.Faker;
 import com.skytalys.model.Product;
 
-import java.util.ArrayList;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class ProductRepository {
 
-    private final ArrayList<Product> products = new ArrayList<Product>();
+    private final List<Product> products = new ArrayList<Product>();
+
+
 
     public void fillListWithData(){
         Faker faker = new Faker();
@@ -26,5 +29,29 @@ public class ProductRepository {
     public void printList(){
         products.forEach(System.out::println);
     }
+
+    public void sortProducts() {
+//        products =   products.stream()
+//                .sorted(Comparator.comparingDouble(product -> product.getPrice()))
+//                .collect(Collectors.toList());
+
+        //creates new list , used when initial list is immutable
+//        products =  products.stream()
+//                .sorted(Comparator
+//                        .comparingInt(Product::getQuantity)
+//                        .thenComparing(Comparator.comparingDouble(Product::getPrice).reversed())
+//                )
+//                .collect(Collectors.toList());
+
+
+   //mutates the list
+        products.sort(Comparator
+                .comparing(Product::getPrice).reversed()
+                .thenComparing(Product::getName));
+
+        //      Collections.sort(products, Comparator.comparingDouble(Product::getPrice));
+
+    }
+
 
 }
