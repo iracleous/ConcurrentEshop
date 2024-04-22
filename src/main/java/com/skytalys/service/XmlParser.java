@@ -3,7 +3,7 @@ package com.skytalys.service;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
-import com.skytalys.model.Guest;
+import com.skytalys.model.Customer;
 
 import java.io.File;
 import java.io.IOException;
@@ -31,10 +31,10 @@ public class XmlParser {
                 </guests>
     """;
 
-        Guest[] guests = null;
+        Customer[] guests = null;
         XmlMapper xmlMapper = new XmlMapper();
         try {
-            guests = xmlMapper.readValue(xlmDoc, Guest[].class);
+            guests = xmlMapper.readValue(xlmDoc, Customer[].class);
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }

@@ -6,7 +6,7 @@ import com.skytalys.model.Product;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class ProductRepository {
+public class ProductStreamRepository {
 
     private final List<Product> products = new ArrayList<Product>();
 
@@ -104,6 +104,11 @@ public long countProductsAbovePriceLevel(double priceLevel) {
                 .anyMatch(p -> p.getName().equals(name));
     }
 
+
+    public Map <Integer, List<Product>>   createGroupsPerQuantity() {
+        return products.stream()
+                .collect(Collectors.groupingBy(Product::getQuantity));
+    }
 }
 
 
