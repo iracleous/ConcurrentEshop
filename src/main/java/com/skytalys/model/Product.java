@@ -10,9 +10,9 @@ import lombok.experimental.SuperBuilder;
 @AllArgsConstructor
 public class Product {
     private int id;
-    private String name;
+    private String name="";
     private double price;
-    private String description;
+    private String description="";
     private int quantity;
   //  @ToString.Exclude
   //  private ProductSupplier productSupplier;

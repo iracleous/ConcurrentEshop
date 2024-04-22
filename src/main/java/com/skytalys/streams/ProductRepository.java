@@ -10,8 +10,6 @@ public class ProductRepository {
 
     private final List<Product> products = new ArrayList<Product>();
 
-
-
     public void fillListWithData(){
         Faker faker = new Faker();
         for (int i = 0; i < 100; i++) {
@@ -52,6 +50,28 @@ public class ProductRepository {
         //      Collections.sort(products, Comparator.comparingDouble(Product::getPrice));
 
     }
+// 5 basic operation in a list
+    // CRRUD
 
+// -> 7 analytic operation in a list
+    //Sorting
+    //Filtering
+    //Mapping
+    //Reducing
+    //Matching
+    //Counting
+    //Grouping
 
+    public List<Product> getProductsAbovePriceLevel(double priceLevel) {
+            return products.stream()
+                    .filter(product -> product.getPrice() >priceLevel)
+                    .collect(Collectors.toList());
+    }
+
+    public List<Product> getProductsStartsWith(String starting){
+        return products.stream()
+                .filter(product -> product.getName()!=null)
+                .filter(product -> product.getName().startsWith(starting))
+                .collect(Collectors.toList());
+    }
 }

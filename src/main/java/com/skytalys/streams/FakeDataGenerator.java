@@ -11,7 +11,6 @@ public class FakeDataGenerator {
         System.out.println("--------------------------------------");
          productRepository.sortProducts();
         productRepository.printList();
-
-}
+    }
 
 }
