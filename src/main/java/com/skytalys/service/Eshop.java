@@ -21,7 +21,7 @@ public class Eshop {
         Product product =   Product
                 .builder()
                 .id(2)
-                .price(12)
+                .price(12.)
                 .quantity(5)
                 .name("chips")
                 .build();

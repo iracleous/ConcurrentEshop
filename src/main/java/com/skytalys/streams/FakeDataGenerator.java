@@ -13,7 +13,7 @@ public class FakeDataGenerator {
       //  productRepository.printList();
         System.out.println("--------------------------------------");
          productRepository.sortProducts();
-      //  productRepository.printList();
+        productRepository.printList();
 
         List<Product> products = productRepository
                 .getProductsStartsWith("A");
@@ -22,8 +22,15 @@ public class FakeDataGenerator {
 
         List<String> descriptionList = productRepository.getProductDescriptions();
         System.out.println("--------------------------------------");
+       descriptionList.forEach(System.out::println);
 
-        descriptionList.forEach(System.out::println);
+        System.out.println("--------------------------------------");
+        System.out.println("products above 200 euros = "
+                + productRepository.countProductsAbovePriceLevel(200));
+
+        System.out.println("--------------------------------------");
+        System.out.println("exist products with name Aerodynamic Steel Plate  = "
+                + productRepository.existsProductWithName("Aerodynamic Steel Plate"));
     }
 
 }
